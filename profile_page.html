@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Profile</title>
+    <meta name="description" content="Create profile" />
+    <link rel="stylesheet" type="text/css" href="profile_page_style.css" />
+    <link
+      href="https://fonts.googleapis.com/css?family=Montserrat:100"
+      rel="stylesheet"
+    />
+  </head>
+
+  <body>
+    <div class="profile-page">
+      <p>Create profile</p>
+      <div class="forms">
+        <div class="img-form">
+          <form
+            action="profile_page.html"
+            method="post"
+            enctype="multipart/form-data"
+          >
+            <img id="uploadPreview" src="default-profile.png" />
+            <input
+              id="uploadImage"
+              type="file"
+              name="profile-img"
+              multiple
+              accept="image/*"
+              onchange="PreviewImage();"
+            />
+
+            <script type="text/javascript">
+              function PreviewImage() {
+                var oFReader = new FileReader();
+                oFReader.readAsDataURL(
+                  document.getElementById("uploadImage").files[0]
+                );
+
+                oFReader.onload = function(oFREvent) {
+                  document.getElementById("uploadPreview").src =
+                    oFREvent.target.result;
+                };
+              }
+            </script>
+          </form>
+        </div>
+
+        <div class="profile-form">
+          <form>
+            <label for="first_name_field_id">First name:</label>
+            <br />
+            <input
+              id="first_name_field_id"
+              type="text"
+              name="first_name_field"
+              required
+            />
+            <br />
+            <label for="last_name_field_id">Last name:</label>
+            <br />
+            <input
+              id="last_name_field_id"
+              type="text"
+              name="last_name_field"
+              required
+            />
+            <br />
+            <label for="phone_field_id">Phone:</label>
+            <br />
+            <input
+              id="phone_field_id"
+              type="tel"
+              name="phone_field"
+              placeholder="+375(**)***-**-**"
+              pattern="[\+]\d{3}[\(]\d{2}[\)]\d{3}[\-]\d{2}[\-]\d{2}"
+              minlength="17"
+              maxlength="17"
+              required
+            />
+          </form>
+        </div>
+      </div>
+      <button type="submit">Create</button>
+    </div>
+  </body>
+</html>
